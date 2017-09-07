@@ -3,10 +3,9 @@ var rotonde = {
     return {
       meta: {
         version: "0.0.1-metaprop",
-        canonical: "rotonde.nanoleptic.net",
+        canonical: "logs.spaceshipsin.space",
         aliases: [
-          "nanoleptic.net:4444",
-          "176.31.185.224:4444"
+          "rotonde.nanoleptic.net"
         ],
         options: {}
       },

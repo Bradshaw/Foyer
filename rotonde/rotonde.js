@@ -1,6 +1,15 @@
 var rotonde = {
   get: function() {
     return {
+      meta: {
+        version: "0.0.1-metaprop",
+        canonical: "rotonde.nanoleptic.net",
+        aliases: [
+          "nanoleptic.net:4444",
+          "176.31.185.224:4444"
+        ],
+        options: {}
+      },
       profile: {
         name: "Gaeel",
         location: "Abstract",

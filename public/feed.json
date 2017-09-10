@@ -1,0 +1,18 @@
+{
+	"meta": {
+		"version": "0.0.1-metaprop",
+		"canonical": "logs.spaceshipsin.space",
+		"aliases": [
+			"rotonde.nanoleptic.net",
+			"logs.spaceshipsin.space/feed.json"
+		],
+		"options": []
+	},
+	"profile": {
+		"name": "gaeel",
+		"color": "#DEE",
+		"avatar": "https://pbs.twimg.com/profile_images/879291279292628992/7hCKAdcY_400x400.jpg"
+	},
+	"feed": [],
+	"portal": []
+}

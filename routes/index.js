@@ -9,6 +9,28 @@ router.get('/', function(req, res, next) {
   simpleGet(req, res, next);
 });
 
+router.get('/by-id/:id', function(req, res, next){
+  var rtnd = rotonde.get();
+  rtnd.feed = rtnd.feed.filter(function(entry){
+    return entry.id == req.params.id;
+  });
+  if (rtnd.feed.length!=1){
+    if (rtnd.feed<1){
+      res.writeHead(404);
+      res.end();
+    } else {
+      res.writeHead(500);
+      res.send("Multiple posts with this ID, please let the owner of this Rotonde know about this");
+    }
+  } else {
+    rtnd.feed.sort(function(a,b){
+      console.log(a);
+      return b.time-a.time;
+    });
+    res.send(rtnd);
+  }
+});
+
 function simpleGet(req, res, next) {
   if (req.headers.hasOwnProperty("accept") && req.headers.accept.includes("text/html")){
     res.writeHead(302, {
@@ -16,20 +38,24 @@ function simpleGet(req, res, next) {
     });
     res.end();
   } else {
-    res.send(JSON.stringify(rotonde.get()))
+    var rtnd = rotonde.get();
+    rtnd.feed.sort(function(a,b){
+      console.log(a);
+      return b.time-a.time;
+    });
+    rtnd.feed = rtnd.feed.slice(0,30);
+    res.send(JSON.stringify(rtnd))
   }
 }
 
 router.post('/post', function(req, res, next){
   authorise(req, res, function(){
     var text = req.body.text;
-    var options = req.body;
+    var options = req.body.options;
     var success = rotonde.post(text, options);
     if (success=="200") {
-      console.log("Awesome")
       simpleGet(req, res, next);
     } else {
-      console.log("Lame")
       next(e);
     }
   });
